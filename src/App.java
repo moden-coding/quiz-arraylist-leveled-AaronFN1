@@ -1,4 +1,5 @@
-/**
+
+/*
  * You are going to write code that is designed to store student ID numbers.
  * You will create an ArrayList for Integers, then accept user input to add values 
  * to that ArrayList. There will be additional modifications you can make:
@@ -24,8 +25,38 @@
  */
 
 import java.util.*;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        Scanner reader = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+
+        ArrayList<Integer> studentIDList = new ArrayList<>();
+        System.out.println("Please input student ID numbers.");
+        System.out.println("Enter '-1' to stop.");
+        while (true) {
+            int studentID = Integer.valueOf(scanner.nextLine());
+            if (studentID == -1) {
+                break;
+            }
+            if (studentIDList.indexOf(studentID) == -1) {
+                studentIDList.add(studentID);
+            } else {
+                int duplicateIndex = studentIDList.indexOf(studentID);
+                System.out.println("This number is a duplicate, would you also like to delete the existing number?");
+                System.out.println("(Answer yes or no)");
+                String tOrF = scanner.nextLine();
+                if (tOrF.equals("yes") || tOrF.equals("Yes")) {
+                    studentIDList.remove(duplicateIndex);
+                    System.out.println("Value removed.");
+                }
+                else{
+                    System.out.println("Value kept.");
+                }
+            }
+        }
+        System.out.println("");
+        for (int studentIDs : studentIDList) {
+            System.out.println(studentIDs);
+        }
     }
 }
